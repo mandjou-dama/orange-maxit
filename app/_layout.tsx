@@ -1,59 +1,143 @@
-import FontAwesome from '@expo/vector-icons/FontAwesome';
-import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
-import { useFonts } from 'expo-font';
-import { Stack } from 'expo-router';
-import * as SplashScreen from 'expo-splash-screen';
-import { useEffect } from 'react';
-import 'react-native-reanimated';
+import DrawerContent from "@/components/drawer/DrawerContent";
+import { DarkTheme, LightTheme } from "@/constants/Theme";
+import { useColorScheme } from "@/hooks/useColorScheme";
+import { useThemeColor } from "@/hooks/useThemeColor";
+import FontAwesome from "@expo/vector-icons/FontAwesome";
+import { ThemeProvider } from "@react-navigation/native";
+import { useFonts } from "expo-font";
+import { Drawer } from "expo-router/drawer";
+import Head from "expo-router/head";
+import { StatusBar } from "expo-status-bar";
+import { Platform, useWindowDimensions } from "react-native";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
+import { KeyboardProvider } from "react-native-keyboard-controller";
+import "react-native-reanimated";
+import { SafeAreaProvider } from "react-native-safe-area-context";
 
-import { useColorScheme } from '@/components/useColorScheme';
-
-export {
-  // Catch any errors thrown by the Layout component.
-  ErrorBoundary,
-} from 'expo-router';
-
-export const unstable_settings = {
-  // Ensure that reloading on `/modal` keeps a back button present.
-  initialRouteName: '(tabs)',
-};
-
-// Prevent the splash screen from auto-hiding before asset loading is complete.
-SplashScreen.preventAutoHideAsync();
+const isWeb = Platform.OS === "web";
 
 export default function RootLayout() {
+  const colorScheme = useColorScheme();
+
   const [loaded, error] = useFonts({
-    SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
+    SpaceMono: require("../assets/fonts/SpaceMono-Regular.ttf"),
     ...FontAwesome.font,
   });
-
-  // Expo Router uses Error Boundaries to catch errors in the navigation tree.
-  useEffect(() => {
-    if (error) throw error;
-  }, [error]);
-
-  useEffect(() => {
-    if (loaded) {
-      SplashScreen.hideAsync();
-    }
-  }, [loaded]);
 
   if (!loaded) {
     return null;
   }
 
-  return <RootLayoutNav />;
+  return (
+    <GestureHandlerRootView style={{ flex: 1 }}>
+      {isWeb && (
+        <Head>
+          <meta name="color-scheme" content="light dark" />
+        </Head>
+      )}
+      <KeyboardProvider>
+        <SafeAreaProvider>
+          <ThemeProvider
+            value={colorScheme === "dark" ? DarkTheme : LightTheme}
+          >
+            <NavigationDrawer />
+            <StatusBar style="auto" />
+          </ThemeProvider>
+        </SafeAreaProvider>
+      </KeyboardProvider>
+    </GestureHandlerRootView>
+  );
 }
 
-function RootLayoutNav() {
-  const colorScheme = useColorScheme();
+export function NavigationDrawer() {
+  const { width } = useWindowDimensions();
+  const text = useThemeColor("text");
+  const theme = useColorScheme();
+  const isLight = theme === "light";
 
   return (
-    <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <Stack>
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="modal" options={{ presentation: 'modal' }} />
-      </Stack>
-    </ThemeProvider>
+    <Drawer
+      screenOptions={{
+        headerShown: false,
+        drawerType: "front",
+        swipeEdgeWidth: width,
+        swipeMinDistance: width * 0.03,
+        drawerStyle: {
+          width: width * 0.85,
+        },
+        drawerLabelStyle: {
+          fontFamily: "InterMedium",
+          height: 24,
+        },
+        drawerItemStyle: {
+          borderRadius: 12,
+          borderCurve: "continuous",
+        },
+        drawerActiveTintColor: text,
+        drawerActiveBackgroundColor: `${text}10`,
+        drawerInactiveTintColor: text + "90",
+        ...(isLight && { overlayColor: "#00000030" }),
+      }}
+      drawerContent={(props) => <DrawerContent {...props} />}
+    >
+      <Drawer.Screen
+        name="(tabs)"
+        initialParams={{ userId: "default-user", showBio: false }}
+        options={{
+          drawerLabel: "Home",
+          drawerItemStyle: { display: "none" },
+          drawerType: "front",
+          swipeMinDistance: width * 0.25,
+          drawerStyle: {
+            width: width,
+            backgroundColor: isLight ? "#fff" : "#121212",
+            zIndex: 100,
+          },
+          overlayColor: "transparent",
+        }}
+      />
+      <Drawer.Screen
+        name="client-service"
+        options={{
+          drawerLabel: "Service client",
+          drawerType: "front",
+          swipeMinDistance: width * 0.25,
+          drawerStyle: {
+            width: width,
+            backgroundColor: "transparent",
+          },
+          overlayColor: "transparent",
+        }}
+        initialParams={{ noPreview: true }}
+      />
+      <Drawer.Screen
+        name="socials"
+        options={{
+          drawerLabel: "Réseaux sociaux",
+          drawerType: "front",
+          swipeMinDistance: width * 0.25,
+          drawerStyle: {
+            width: width,
+            backgroundColor: "transparent",
+          },
+          overlayColor: "transparent",
+        }}
+        initialParams={{ noPreview: true }}
+      />
+      <Drawer.Screen
+        name="about"
+        options={{
+          drawerLabel: "À propos",
+          drawerType: "front",
+          swipeMinDistance: width * 0.25,
+          drawerStyle: {
+            width: width,
+            backgroundColor: "transparent",
+          },
+          overlayColor: "transparent",
+        }}
+        initialParams={{ noPreview: true }}
+      />
+    </Drawer>
   );
 }

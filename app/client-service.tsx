@@ -9,11 +9,11 @@ interface Props {
   // Add your navigation or route props here if needed
 }
 
-const MyLine = ({}: Props) => {
+const ClientService = ({}: Props) => {
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.inner}>
-        <Text>my-line Screen</Text>
+        <Text>ClientService</Text>
       </View>
     </SafeAreaView>
   );
@@ -31,4 +31,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default MyLine;
+export default ClientService;

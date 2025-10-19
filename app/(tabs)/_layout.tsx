@@ -10,7 +10,7 @@ import {
   Sarali,
   Sugu,
 } from "@/assets/icons/tab-icons";
-import { useColorScheme } from "@/components/useColorScheme";
+import { useColorScheme } from "@/hooks/useColorScheme";
 import { BlurView } from "expo-blur";
 
 // You can explore the built-in icon families and icons on the web at https://icons.expo.fyi/
@@ -27,8 +27,7 @@ export default function TabLayout() {
   return (
     <Tabs
       screenOptions={{
-        animation: "fade",
-        tabBarAllowFontScaling: false,
+        animation: "none",
         tabBarActiveTintColor: "#FE7900",
         tabBarLabelStyle: {
           fontSize: 10,
@@ -44,6 +43,7 @@ export default function TabLayout() {
           borderTopWidth: StyleSheet.hairlineWidth,
           borderTopColor: "rgba(0,0,0,0.2)",
           elevation: 0,
+          zIndex: 1,
           // marginBottom: currentEpisode ? 86 : 0,
         },
         headerStyle: {
@@ -54,7 +54,7 @@ export default function TabLayout() {
             <BlurView
               tint={"systemThickMaterialDark"}
               intensity={80}
-              style={StyleSheet.absoluteFill}
+              style={[StyleSheet.absoluteFill]}
             />
           ) : null,
       }}
@@ -76,7 +76,7 @@ export default function TabLayout() {
             <OrangeMoney
               width={24}
               height={24}
-              color={props.focused ? "#FE7900" : "#8E8E8F"}
+              color={props.focused ? "#FE7900" : "#656565"}
             />
           ),
         }}
@@ -89,7 +89,7 @@ export default function TabLayout() {
             <MyLine
               width={24}
               height={24}
-              color={props.focused ? "#FE7900" : "#8E8E8F"}
+              color={props.focused ? "#FE7900" : "#656565"}
             />
           ),
         }}
@@ -102,7 +102,7 @@ export default function TabLayout() {
             <Sugu
               width={24}
               height={24}
-              color={props.focused ? "#FE7900" : "#8E8E8F"}
+              color={props.focused ? "#FE7900" : "#656565"}
             />
           ),
         }}
@@ -116,7 +116,7 @@ export default function TabLayout() {
             <Sarali
               width={24}
               height={24}
-              color={props.focused ? "#FE7900" : "#8E8E8F"}
+              color={props.focused ? "#FE7900" : "#656565"}
             />
           ),
         }}

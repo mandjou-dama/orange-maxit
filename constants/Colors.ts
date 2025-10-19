@@ -1,19 +1,37 @@
-const tintColorLight = '#2f95dc';
-const tintColorDark = '#fff';
+const tintColorLight = "#0a7ea4";
+const tintColorDark = "#fff";
 
-export default {
+export const Colors = {
   light: {
-    text: '#000',
-    background: '#fff',
+    waBg: "#F4F4F4",
+    text: "#181818",
+    background: "#F5F5F7",
+    barColor: "#FFFFFF",
+    waCard: "#FFFFFF",
+    card: "#F5F5F7",
     tint: tintColorLight,
-    tabIconDefault: '#ccc',
-    tabIconSelected: tintColorLight,
+    untitledBg: "#FFFFFF",
+    untitledGradient1: "#D55FDC",
+    untitledGradient2: "#F5C1DB",
+    untitledBarBg: "#222222",
+    slackBg: "#FFFFFF",
+    slackText: "#1C1C1C",
+    safariBg: "#F2F2F6",
   },
   dark: {
-    text: '#fff',
-    background: '#000',
+    waBg: "#000000",
+    text: "#F5F5F7",
+    background: "#121212",
+    card: "#121212",
+    barColor: "#1A1A1A",
+    waCard: "#171718",
     tint: tintColorDark,
-    tabIconDefault: '#ccc',
-    tabIconSelected: tintColorDark,
+    untitledBg: "#191918",
+    untitledGradient1: "#D55FDC",
+    untitledGradient2: "#F5C1DB",
+    untitledBarBg: "#323232",
+    slackBg: "#1B1D21",
+    slackText: "#D2D2D4",
+    safariBg: "#1C1C1E",
   },
 };

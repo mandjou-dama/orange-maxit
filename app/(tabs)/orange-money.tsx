@@ -1,5 +1,6 @@
+import { View } from "@/components/Themed";
 import React from "react";
-import { SafeAreaView, StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text } from "react-native";
 
 interface Props {
   // Add your navigation or route props here if needed
@@ -7,11 +8,11 @@ interface Props {
 
 const OrangeMoney = ({}: Props) => {
   return (
-    <SafeAreaView style={styles.container}>
+    <View style={styles.container}>
       <View style={styles.inner}>
         <Text>OrangeMoney Screen</Text>
       </View>
-    </SafeAreaView>
+    </View>
   );
 };
 

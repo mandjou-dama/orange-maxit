@@ -1,5 +1,9 @@
 import React from "react";
-import { SafeAreaView, StyleSheet, Text, View } from "react-native";
+import { StyleSheet } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
+
+import { ThemedText as View } from "@/components/ThemedText";
+import { ThemedView as Text } from "@/components/ThemedView";
 
 interface Props {
   // Add your navigation or route props here if needed
