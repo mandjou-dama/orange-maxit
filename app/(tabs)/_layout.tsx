@@ -1,15 +1,21 @@
-import React from 'react';
-import FontAwesome from '@expo/vector-icons/FontAwesome';
-import { Link, Tabs } from 'expo-router';
-import { Pressable } from 'react-native';
+import FontAwesome from "@expo/vector-icons/FontAwesome";
+import { Tabs } from "expo-router";
+import React from "react";
+import { Platform, StatusBar, StyleSheet } from "react-native";
 
-import Colors from '@/constants/Colors';
-import { useColorScheme } from '@/components/useColorScheme';
-import { useClientOnlyValue } from '@/components/useClientOnlyValue';
+import {
+  Home,
+  MyLine,
+  OrangeMoney,
+  Sarali,
+  Sugu,
+} from "@/assets/icons/tab-icons";
+import { useColorScheme } from "@/components/useColorScheme";
+import { BlurView } from "expo-blur";
 
 // You can explore the built-in icon families and icons on the web at https://icons.expo.fyi/
 function TabBarIcon(props: {
-  name: React.ComponentProps<typeof FontAwesome>['name'];
+  name: React.ComponentProps<typeof FontAwesome>["name"];
   color: string;
 }) {
   return <FontAwesome size={28} style={{ marginBottom: -3 }} {...props} />;
@@ -21,37 +27,98 @@ export default function TabLayout() {
   return (
     <Tabs
       screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
-        // Disable the static render of the header on web
-        // to prevent a hydration error in React Navigation v6.
-        headerShown: useClientOnlyValue(false, true),
-      }}>
+        animation: "fade",
+        tabBarAllowFontScaling: false,
+        tabBarActiveTintColor: "#FE7900",
+        tabBarLabelStyle: {
+          fontSize: 10,
+        },
+        headerShown: false,
+        lazy: true,
+        tabBarStyle: {
+          position: "absolute",
+          backgroundColor: Platform.select({
+            ios: "transparent",
+            android: "rgba(255, 255, 255, 1)",
+          }),
+          borderTopWidth: StyleSheet.hairlineWidth,
+          borderTopColor: "rgba(0,0,0,0.2)",
+          elevation: 0,
+          // marginBottom: currentEpisode ? 86 : 0,
+        },
+        headerStyle: {
+          height: Platform.OS === "android" ? StatusBar.currentHeight : 0,
+        },
+        tabBarBackground: () =>
+          Platform.OS === "ios" ? (
+            <BlurView
+              tint={"systemThickMaterialDark"}
+              intensity={80}
+              style={StyleSheet.absoluteFill}
+            />
+          ) : null,
+      }}
+    >
       <Tabs.Screen
         name="index"
         options={{
-          title: 'Tab One',
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
-          headerRight: () => (
-            <Link href="/modal" asChild>
-              <Pressable>
-                {({ pressed }) => (
-                  <FontAwesome
-                    name="info-circle"
-                    size={25}
-                    color={Colors[colorScheme ?? 'light'].text}
-                    style={{ marginRight: 15, opacity: pressed ? 0.5 : 1 }}
-                  />
-                )}
-              </Pressable>
-            </Link>
+          title: "Home",
+          tabBarIcon: ({ color, focused }) => (
+            <Home color={focused ? "#FE7900" : color} width={24} height={24} />
           ),
         }}
       />
       <Tabs.Screen
-        name="two"
+        name="orange-money"
         options={{
-          title: 'Tab Two',
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+          title: "Orange Money",
+          tabBarIcon: (props) => (
+            <OrangeMoney
+              width={24}
+              height={24}
+              color={props.focused ? "#FE7900" : "#8E8E8F"}
+            />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="my-line"
+        options={{
+          title: "Ma Ligne",
+          tabBarIcon: (props) => (
+            <MyLine
+              width={24}
+              height={24}
+              color={props.focused ? "#FE7900" : "#8E8E8F"}
+            />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="sugu"
+        options={{
+          title: "Sugu",
+          tabBarIcon: (props) => (
+            <Sugu
+              width={24}
+              height={24}
+              color={props.focused ? "#FE7900" : "#8E8E8F"}
+            />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="sarali"
+        options={{
+          title: "Sarali",
+          headerShown: false,
+          tabBarIcon: (props) => (
+            <Sarali
+              width={24}
+              height={24}
+              color={props.focused ? "#FE7900" : "#8E8E8F"}
+            />
+          ),
         }}
       />
     </Tabs>
