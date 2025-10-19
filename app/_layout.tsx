@@ -8,6 +8,7 @@ import { useFonts } from "expo-font";
 import { Drawer } from "expo-router/drawer";
 import Head from "expo-router/head";
 import { StatusBar } from "expo-status-bar";
+import { HandHeart, Headset, InfoIcon } from "lucide-react-native";
 import { Platform, useWindowDimensions } from "react-native";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { KeyboardProvider } from "react-native-keyboard-controller";
@@ -86,12 +87,13 @@ export function NavigationDrawer() {
         options={{
           drawerLabel: "Home",
           drawerItemStyle: { display: "none" },
-          drawerType: "front",
-          swipeMinDistance: width * 0.25,
+          swipeMinDistance: width * 0.025,
           drawerStyle: {
             width: width,
-            backgroundColor: isLight ? "#fff" : "#121212",
-            zIndex: 100,
+            backgroundColor: Platform.select({
+              ios: "transparent",
+              android: isLight ? "#fff" : "#121212",
+            }),
           },
           overlayColor: "transparent",
         }}
@@ -100,13 +102,15 @@ export function NavigationDrawer() {
         name="client-service"
         options={{
           drawerLabel: "Service client",
-          drawerType: "front",
           swipeMinDistance: width * 0.25,
           drawerStyle: {
             width: width,
-            backgroundColor: "transparent",
+            backgroundColor: isLight ? "#fff" : "#121212",
           },
           overlayColor: "transparent",
+          drawerIcon: ({ color, size }) => (
+            <Headset size={size} color={color} />
+          ),
         }}
         initialParams={{ noPreview: true }}
       />
@@ -114,13 +118,15 @@ export function NavigationDrawer() {
         name="socials"
         options={{
           drawerLabel: "Réseaux sociaux",
-          drawerType: "front",
           swipeMinDistance: width * 0.25,
           drawerStyle: {
             width: width,
-            backgroundColor: "transparent",
+            backgroundColor: isLight ? "#fff" : "#121212",
           },
           overlayColor: "transparent",
+          drawerIcon: ({ color, size }) => (
+            <HandHeart size={size} color={color} />
+          ),
         }}
         initialParams={{ noPreview: true }}
       />
@@ -128,15 +134,35 @@ export function NavigationDrawer() {
         name="about"
         options={{
           drawerLabel: "À propos",
-          drawerType: "front",
           swipeMinDistance: width * 0.25,
           drawerStyle: {
             width: width,
             backgroundColor: "transparent",
           },
           overlayColor: "transparent",
+          drawerIcon: ({ color, size }) => (
+            <InfoIcon size={size} color={color} />
+          ),
         }}
         initialParams={{ noPreview: true }}
+      />
+      <Drawer.Screen
+        name="modal"
+        options={{
+          drawerLabel: "Modal",
+          drawerType: "front",
+          drawerItemStyle: { display: "none" },
+          swipeMinDistance: width * 0.25,
+        }}
+      />
+      <Drawer.Screen
+        name="+not-found"
+        options={{
+          drawerLabel: "Modal",
+          drawerType: "front",
+          drawerItemStyle: { display: "none" },
+          swipeMinDistance: width * 0.25,
+        }}
       />
     </Drawer>
   );
