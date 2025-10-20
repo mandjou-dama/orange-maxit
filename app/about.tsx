@@ -3,6 +3,7 @@ import { StyleSheet } from "react-native";
 
 import { ThemedText as Text } from "@/components/ThemedText";
 import { ThemedView as View } from "@/components/ThemedView";
+import { AnimatedScreenWrapper } from "@/components/drawer/AnimatedScreenWrapper";
 
 interface Props {
   // Add your navigation or route props here if needed
@@ -10,11 +11,13 @@ interface Props {
 
 const About = ({}: Props) => {
   return (
-    <View style={styles.container}>
-      <View style={styles.inner}>
-        <Text>about Screen</Text>
+    <AnimatedScreenWrapper>
+      <View style={styles.container}>
+        <View style={styles.inner}>
+          <Text>about Screen</Text>
+        </View>
       </View>
-    </View>
+    </AnimatedScreenWrapper>
   );
 };
 

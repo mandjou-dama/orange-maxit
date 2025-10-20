@@ -9,12 +9,12 @@ interface Props {
   // Add your navigation or route props here if needed
 }
 
-const ClientService = ({}: Props) => {
+const Favorites = ({}: Props) => {
   return (
     <AnimatedScreenWrapper>
       <View style={styles.container}>
         <View style={styles.inner}>
-          <Text>ClientService</Text>
+          <Text>socials Screen</Text>
         </View>
       </View>
     </AnimatedScreenWrapper>
@@ -33,4 +33,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ClientService;
+export default Favorites;

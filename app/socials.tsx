@@ -1,3 +1,4 @@
+import { AnimatedScreenWrapper } from "@/components/drawer/AnimatedScreenWrapper";
 import React from "react";
 import { StyleSheet } from "react-native";
 
@@ -10,11 +11,13 @@ interface Props {
 
 const Socials = ({}: Props) => {
   return (
-    <View style={styles.container}>
-      <View style={styles.inner}>
-        <Text>socials Screen</Text>
+    <AnimatedScreenWrapper>
+      <View style={styles.container}>
+        <View style={styles.inner}>
+          <Text>socials Screen</Text>
+        </View>
       </View>
-    </View>
+    </AnimatedScreenWrapper>
   );
 };
 

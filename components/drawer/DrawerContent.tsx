@@ -1,7 +1,6 @@
 import config from "@/constants/config.json";
 import { useThemeColor } from "@/hooks/useThemeColor";
 import { Feedback } from "@/utils/feedback";
-import FontAwesome6 from "@expo/vector-icons/FontAwesome6";
 import {
   DrawerContentComponentProps,
   // DrawerItemList,
@@ -9,11 +8,18 @@ import {
 } from "@react-navigation/drawer";
 import { Image } from "expo-image";
 import { useFocusEffect, useRouter } from "expo-router";
-import { Home } from "lucide-react-native";
+import { Github, Linkedin, LogOut } from "lucide-react-native";
 import React, { memo, useCallback, useEffect, useState } from "react";
-import { Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
+import {
+  ScrollView,
+  StyleProp,
+  StyleSheet,
+  TouchableOpacity,
+  View,
+  ViewStyle,
+} from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { ThemedText } from "../ThemedText";
+import { ThemedText as Text } from "../ThemedText";
 import TextLink from "../ui/TextLink";
 import { DrawerItemList } from "./DrawerItemList";
 
@@ -56,6 +62,7 @@ const DrawerContent = memo((props: DrawerContentComponentProps) => {
 
 const Header = ({ routes }: { routes: number }) => {
   const text = useThemeColor("text");
+  const tint = useThemeColor("tint");
   const textColor = text + "EA";
   const router = useRouter();
 
@@ -68,11 +75,11 @@ const Header = ({ routes }: { routes: number }) => {
       style={[
         styles.header,
         {
-          borderColor: text + "18",
+          borderColor: text + "10",
         },
       ]}
     >
-      <Pressable style={styles.headerButton} onPress={handlePress}>
+      {/* <Pressable style={styles.headerButton} onPress={handlePress}>
         <Home size={20} color={"#A0A0A0"} />
         <ThemedText style={[styles.headerText, { color: textColor }]}>
           Home
@@ -81,14 +88,8 @@ const Header = ({ routes }: { routes: number }) => {
       <ThemedText>
         {routes}
         <Text style={styles.demoText}>{routes > 1 ? " demos" : " demo"}</Text>
-      </ThemedText>
-    </View>
-  );
-};
+      </ThemedText> */}
 
-const DrawerFooter = () => {
-  return (
-    <View style={styles.footer}>
       <View style={styles.cluster}>
         <Image
           //   source={require("@/assets/images/dp.png")}
@@ -97,15 +98,68 @@ const DrawerFooter = () => {
           }}
           style={styles.image}
         />
-        <ThemedText style={styles.footerText}>Mandjou</ThemedText>
+        <View style={{}}>
+          <Text style={styles.headerText}>Mandjou Dama</Text>
+          <Text style={[styles.headerTextNumber, { color: tint }]}>
+            +223 78437323
+          </Text>
+        </View>
       </View>
       <View style={styles.cluster}>
         <TextLink link={config.contact.twitter} style={styles.contactIcon}>
-          <FontAwesome6 name="x-twitter" size={21} />
+          <Linkedin size={21} />
         </TextLink>
         <TextLink link={config.contact.github} style={styles.contactIcon}>
-          <FontAwesome6 name="github" size={21} />
+          <Github stroke={text} size={21} />
         </TextLink>
+      </View>
+    </View>
+  );
+};
+
+const Button = ({
+  children,
+  onPress,
+  style,
+}: {
+  children: React.ReactNode;
+  onPress?: () => void;
+  style?: StyleProp<ViewStyle>;
+}) => {
+  const text = useThemeColor("text");
+  const tint = useThemeColor("tint");
+
+  return (
+    <TouchableOpacity
+      style={[
+        styles.chatBtn,
+        {
+          borderColor: text + "10",
+          // backgroundColor: text + "10",
+        },
+        style,
+      ]}
+      onPress={onPress}
+      activeOpacity={0.8}
+    >
+      {children}
+    </TouchableOpacity>
+  );
+};
+
+const DrawerFooter = () => {
+  const text = useThemeColor("text");
+  const tint = useThemeColor("tint");
+  return (
+    <View style={styles.footer}>
+      <View style={styles.cluster}>
+        <Button>
+          <LogOut stroke={tint} size={21} />
+          <Text style={styles.footerText}>Se déconnecter</Text>
+        </Button>
+      </View>
+      <View style={styles.cluster}>
+        <Text style={styles.footerText}>Version 1.4.0</Text>
       </View>
     </View>
   );
@@ -119,6 +173,7 @@ const styles = StyleSheet.create({
   },
   scrollViewContent: {
     padding: 12,
+    paddingTop: 24,
     gap: 6,
   },
   header: {
@@ -128,7 +183,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "space-between",
     borderBottomWidth: 1,
-    paddingBottom: 4,
+    paddingVertical: 14,
   },
   headerButton: {
     flexDirection: "row",
@@ -138,6 +193,10 @@ const styles = StyleSheet.create({
   },
   headerText: {
     fontSize: 15,
+    marginBottom: 3,
+  },
+  headerTextNumber: {
+    fontSize: 14,
   },
   demoText: {
     fontSize: 14,
@@ -150,13 +209,25 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     gap: 12,
   },
+  chatBtn: {
+    padding: 8,
+    paddingVertical: 10,
+    borderWidth: 2,
+    borderRadius: 50,
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+    borderCurve: "continuous",
+    width: 170,
+    gap: 5,
+  },
   image: {
     width: 32,
     aspectRatio: 1,
     borderRadius: 16,
   },
   footerText: {
-    fontSize: 18,
+    fontSize: 16,
   },
   cluster: {
     flexDirection: "row",

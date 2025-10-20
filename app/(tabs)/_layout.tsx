@@ -20,6 +20,7 @@ import {
   Sarali,
   Sugu,
 } from "@/assets/icons/tab-icons";
+import { AnimatedScreenWrapper } from "@/components/drawer/AnimatedScreenWrapper";
 import { useColorScheme } from "@/hooks/useColorScheme";
 import { useDrawerProgress } from "@react-navigation/drawer";
 import { BlurView } from "expo-blur";
@@ -50,7 +51,7 @@ export default function TabLayout() {
   }));
 
   return (
-    <Animated.View style={[StyleSheet.absoluteFill]}>
+    <AnimatedScreenWrapper>
       <Tabs
         screenOptions={{
           animation: "none",
@@ -152,11 +153,6 @@ export default function TabLayout() {
           }}
         />
       </Tabs>
-      <AnimatedBlurView
-        style={[StyleSheet.absoluteFill, { zIndex: 100 }]}
-        pointerEvents="none"
-        intensity={intensity}
-      />
-    </Animated.View>
+    </AnimatedScreenWrapper>
   );
 }
