@@ -8,6 +8,7 @@ import { Pressable, View } from "react-native";
 export default function HomeLayout() {
   const navigation = useNavigation<DrawerNavigationProp<any>>();
 
+  const text = useThemeColor("text");
   const tint = useThemeColor("tint");
   return (
     <Stack>
@@ -15,28 +16,29 @@ export default function HomeLayout() {
         name="index"
         options={{
           headerShown: true,
-          title: "Mandjou Dama",
-          headerTitleStyle: {
-            fontSize: 14,
-          },
           headerTransparent: true,
-          headerLargeTitle: true,
-          headerBlurEffect: "prominent",
-          headerLargeTitleShadowVisible: false,
-          headerShadowVisible: true,
-          headerSearchBarOptions: {
-            allowToolbarIntegration: true,
-            autoCapitalize: "none",
-            hideWhenScrolling: true,
-            placement: "automatic",
-            placeholder: "Rechercher un service",
+          headerTitleStyle: {
+            fontSize: 12,
           },
-          headerLargeTitleStyle: {
-            fontSize: 24,
-          },
-          headerLargeStyle: {
-            backgroundColor: "transparent",
-          },
+          headerTintColor: "#fff",
+          // headerTransparent: true,
+          // headerLargeTitle: true,
+          // headerBlurEffect: "prominent",
+          // headerLargeTitleShadowVisible: false,
+          // headerShadowVisible: true,
+          // headerSearchBarOptions: {
+          //   allowToolbarIntegration: true,
+          //   autoCapitalize: "none",
+          //   hideWhenScrolling: true,
+          //   placement: "automatic",
+          //   placeholder: "Rechercher un service",
+          // },
+          // headerLargeTitleStyle: {
+          //   fontSize: 24,
+          // },
+          // headerLargeStyle: {
+          //   backgroundColor: "transparent",
+          // },
           headerLeft: () => (
             <View
               style={{ flexDirection: "row", alignItems: "center", gap: 12 }}
