@@ -1,43 +1,73 @@
-import { ThemedText, ThemedTextWrapper } from "@/components/ThemedText";
+import { ThemedText as Text, ThemedTextWrapper } from "@/components/ThemedText";
 import { useThemeColor } from "@/hooks/useThemeColor";
 import { DrawerNavigationProp } from "@react-navigation/drawer";
+import { useHeaderHeight } from "@react-navigation/elements";
+import { FlashList } from "@shopify/flash-list";
 import { useNavigation } from "expo-router";
 import { Ghost, Menu } from "lucide-react-native";
 import React from "react";
 import {
   Pressable,
-  ScrollView,
   StyleProp,
   StyleSheet,
   TouchableOpacity,
   View,
   ViewStyle,
 } from "react-native";
-import { KeyboardAvoidingView } from "react-native-keyboard-controller";
-import { SafeAreaView } from "react-native-safe-area-context";
 
 const CHAT_BOX_MARGIN_V = 6;
 const RADIUS = 28;
 
+const DATA = [
+  {
+    title: "First Item",
+  },
+  {
+    title: "Second Item",
+  },
+  {
+    title: "Second Item",
+  },
+  {
+    title: "Second Item",
+  },
+  {
+    title: "Second Item",
+  },
+  {
+    title: "Second Item",
+  },
+  {
+    title: "Second Item",
+  },
+  {
+    title: "Second Item",
+  },
+  {
+    title: "Second Item",
+  },
+];
+
 export default function HomeScreen() {
+  const headerHeight = useHeaderHeight();
   return (
-    <SafeAreaView style={styles.container}>
-      <KeyboardAvoidingView
-        behavior="padding"
-        style={{ flex: 1 }}
-        keyboardVerticalOffset={CHAT_BOX_MARGIN_V}
-      >
-        <View style={[styles.container]}>
-          <Header />
-          <ScrollView
-            style={styles.screen}
-            contentContainerStyle={styles.screenInner}
-          >
-            <Ghost size={84} />
-          </ScrollView>
-        </View>
-      </KeyboardAvoidingView>
-    </SafeAreaView>
+    <View style={[styles.container, { paddingTop: headerHeight }]}>
+      {/* <Header /> */}
+      <FlashList
+        contentContainerStyle={styles.screenInner}
+        style={styles.screen}
+        data={DATA}
+        renderItem={({ item }) => (
+          <View
+            style={{
+              width: 200,
+              height: 200,
+              backgroundColor: "#131344",
+            }}
+          ></View>
+        )}
+      />
+    </View>
   );
 }
 
@@ -56,9 +86,9 @@ const Header = () => {
         </ThemedTextWrapper>
       </Pressable>
       <View>
-        <ThemedText style={styles.headerTitle} type="defaultSemiBold">
+        <Text style={styles.headerTitle} type="defaultSemiBold">
           Grok
-        </ThemedText>
+        </Text>
       </View>
       <View style={styles.headerRight}>
         <ThemedTextWrapper>
@@ -102,7 +132,6 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   screen: {
-    flex: 1,
     padding: 16,
   },
   screenInner: {
