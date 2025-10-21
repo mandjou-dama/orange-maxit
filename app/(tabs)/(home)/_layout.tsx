@@ -1,7 +1,8 @@
 import { useThemeColor } from "@/hooks/useThemeColor";
 import { DrawerNavigationProp } from "@react-navigation/drawer";
 import { Stack, useNavigation } from "expo-router";
-import { Bell, Bot, Menu, Search } from "lucide-react-native";
+
+import { Bell, Bot, Menu } from "lucide-react-native";
 import { Pressable, View } from "react-native";
 
 export default function HomeLayout() {
@@ -23,6 +24,13 @@ export default function HomeLayout() {
           headerBlurEffect: "prominent",
           headerLargeTitleShadowVisible: false,
           headerShadowVisible: true,
+          headerSearchBarOptions: {
+            allowToolbarIntegration: true,
+            autoCapitalize: "none",
+            hideWhenScrolling: true,
+            placement: "automatic",
+            placeholder: "Rechercher un service",
+          },
           headerLargeTitleStyle: {
             fontSize: 24,
           },
@@ -46,18 +54,6 @@ export default function HomeLayout() {
               >
                 <Menu stroke={"#ffffffce"} size={16} />
               </Pressable>
-              <Pressable
-                style={{
-                  width: 30,
-                  height: 30,
-                  justifyContent: "center",
-                  alignItems: "center",
-                  backgroundColor: "rgba(255, 255, 255, 0.05)",
-                  borderRadius: 100,
-                }}
-              >
-                <Bot stroke={tint} size={16} />
-              </Pressable>
             </View>
           ),
           headerRight: () => (
@@ -74,7 +70,7 @@ export default function HomeLayout() {
                   borderRadius: 100,
                 }}
               >
-                <Search stroke={"#ffffffce"} size={16} />
+                <Bot stroke={tint} size={16} />
               </Pressable>
               <Pressable
                 style={{

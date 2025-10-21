@@ -1,17 +1,6 @@
 import { Tabs } from "expo-router";
 import React from "react";
-import {
-  Platform,
-  StatusBar,
-  StyleSheet,
-  useWindowDimensions,
-} from "react-native";
-
-import Animated, {
-  useAnimatedReaction,
-  useAnimatedStyle,
-  useSharedValue,
-} from "react-native-reanimated";
+import { Platform, StyleSheet } from "react-native";
 
 import {
   Home,
@@ -21,35 +10,9 @@ import {
   Sugu,
 } from "@/assets/icons/tab-icons";
 import { AnimatedScreenWrapper } from "@/components/drawer/AnimatedScreenWrapper";
-import { useColorScheme } from "@/hooks/useColorScheme";
-import { useDrawerProgress } from "@react-navigation/drawer";
 import { BlurView } from "expo-blur";
 
-const BLUR_INTENSITY = 80;
-
-const AnimatedBlurView = Animated.createAnimatedComponent(BlurView);
-
 export default function TabLayout() {
-  const colorScheme = useColorScheme();
-  const intensity = useSharedValue<number | undefined>(0);
-  const drawerProgress = useDrawerProgress();
-  const { width } = useWindowDimensions();
-
-  useAnimatedReaction(
-    () => drawerProgress.value,
-    (progress) => {
-      intensity.value = progress * BLUR_INTENSITY;
-    }
-  );
-
-  const animatedStyle = useAnimatedStyle(() => ({
-    transform: [
-      {
-        translateX: drawerProgress.value * (width / 3),
-      },
-    ],
-  }));
-
   return (
     <AnimatedScreenWrapper>
       <Tabs
@@ -73,9 +36,9 @@ export default function TabLayout() {
             zIndex: 1,
             // marginBottom: currentEpisode ? 86 : 0,
           },
-          headerStyle: {
-            height: Platform.OS === "android" ? StatusBar.currentHeight : 0,
-          },
+          // headerStyle: {
+          //   height: Platform.OS === "android" ? StatusBar.currentHeight : 0,
+          // },
           tabBarBackground: () =>
             Platform.OS === "ios" ? (
               <BlurView

@@ -1,7 +1,6 @@
 import { ThemedText as Text, ThemedTextWrapper } from "@/components/ThemedText";
 import { useThemeColor } from "@/hooks/useThemeColor";
 import { DrawerNavigationProp } from "@react-navigation/drawer";
-import { useHeaderHeight } from "@react-navigation/elements";
 import { FlashList } from "@shopify/flash-list";
 import { useNavigation } from "expo-router";
 import { Ghost, Menu } from "lucide-react-native";
@@ -49,30 +48,26 @@ const DATA = [
 ];
 
 export default function HomeScreen() {
-  const headerHeight = useHeaderHeight();
   return (
-    <View style={[styles.container]}>
-      {/* <Header /> */}
-      <FlashList
-        contentContainerStyle={styles.screenInner}
-        contentInsetAdjustmentBehavior="always"
-        scrollEventThrottle={14}
-        scrollIndicatorInsets={{
-          top: -35,
-        }}
-        style={styles.screen}
-        data={DATA}
-        renderItem={({ item }) => (
-          <View
-            style={{
-              width: 200,
-              height: 200,
-              backgroundColor: "#1313440",
-            }}
-          ></View>
-        )}
-      />
-    </View>
+    <FlashList
+      scrollToOverflowEnabled
+      contentContainerStyle={[styles.screenInner]}
+      contentInsetAdjustmentBehavior="automatic"
+      scrollIndicatorInsets={{
+        top: -35,
+      }}
+      style={styles.screen}
+      data={DATA}
+      renderItem={({ item }) => (
+        <View
+          style={{
+            width: 200,
+            height: 200,
+            backgroundColor: "#1313440",
+          }}
+        ></View>
+      )}
+    />
   );
 }
 
@@ -138,7 +133,7 @@ const styles = StyleSheet.create({
   },
   screen: {},
   screenInner: {
-    flexGrow: 1,
+    flex: 1,
     alignItems: "center",
     justifyContent: "center",
     padding: 16,

@@ -9,7 +9,7 @@ import Animated, {
 } from "react-native-reanimated";
 
 const AnimatedBlurView = Animated.createAnimatedComponent(BlurView);
-const BLUR_INTENSITY = 80;
+const BLUR_INTENSITY = 20;
 
 export const GlobalBlurOverlay = () => {
   const intensity = useSharedValue<number | undefined>(0);

@@ -74,7 +74,7 @@ export function NavigationDrawer() {
         headerShown: false,
         drawerType: "front",
         swipeEdgeWidth: width,
-        swipeMinDistance: width * 0.03,
+        swipeMinDistance: width * 0.025,
         drawerStyle: {
           width: width * 0.85,
           backgroundColor: isLight ? "#fff" : "#121212",
@@ -100,7 +100,6 @@ export function NavigationDrawer() {
         options={{
           drawerLabel: "Accueil",
           // drawerItemStyle: { display: "none" },
-          swipeMinDistance: width * 0.025,
           drawerStyle: {
             width: width,
             // backgroundColor: Platform.select({
@@ -116,7 +115,6 @@ export function NavigationDrawer() {
         name="client-service"
         options={{
           drawerLabel: "Service client",
-          swipeMinDistance: width * 0.025,
           drawerStyle: {
             width: width,
             // backgroundColor: Platform.select({
@@ -135,7 +133,6 @@ export function NavigationDrawer() {
         name="socials"
         options={{
           drawerLabel: "Réseaux sociaux",
-          swipeMinDistance: width * 0.025,
           drawerStyle: {
             width: width,
             // backgroundColor: Platform.select({
@@ -154,7 +151,6 @@ export function NavigationDrawer() {
         name="favorites"
         options={{
           drawerLabel: "Gestion des favoris",
-          swipeMinDistance: width * 0.025,
           drawerStyle: {
             width: width,
           },
@@ -167,7 +163,6 @@ export function NavigationDrawer() {
         name="settings"
         options={{
           drawerLabel: "Paramètres",
-          swipeMinDistance: width * 0.025,
           drawerStyle: {
             width: width,
           },
@@ -182,7 +177,6 @@ export function NavigationDrawer() {
         name="about"
         options={{
           drawerLabel: "À propos",
-          swipeMinDistance: width * 0.025,
           drawerStyle: {
             width: width,
           },
@@ -197,7 +191,6 @@ export function NavigationDrawer() {
         name="faqs"
         options={{
           drawerLabel: "FAQs",
-          swipeMinDistance: width * 0.025,
           drawerStyle: {
             width: width,
           },
@@ -212,7 +205,6 @@ export function NavigationDrawer() {
         name="sarali-plus"
         options={{
           drawerLabel: "Sarali Plus",
-          swipeMinDistance: width * 0.025,
           drawerStyle: {
             width: width,
           },
@@ -227,7 +219,6 @@ export function NavigationDrawer() {
         name="nina"
         options={{
           drawerLabel: "Mettre à jour NINA",
-          swipeMinDistance: width * 0.025,
           drawerStyle: {
             width: width,
           },
@@ -245,7 +236,6 @@ export function NavigationDrawer() {
           drawerLabel: "Modal",
           drawerType: "front",
           drawerItemStyle: { display: "none" },
-          swipeMinDistance: width * 0.025,
         }}
       />
       <Drawer.Screen
