@@ -51,10 +51,15 @@ const DATA = [
 export default function HomeScreen() {
   const headerHeight = useHeaderHeight();
   return (
-    <View style={[styles.container, { paddingTop: headerHeight }]}>
+    <View style={[styles.container]}>
       {/* <Header /> */}
       <FlashList
         contentContainerStyle={styles.screenInner}
+        contentInsetAdjustmentBehavior="always"
+        scrollEventThrottle={14}
+        scrollIndicatorInsets={{
+          top: -35,
+        }}
         style={styles.screen}
         data={DATA}
         renderItem={({ item }) => (
@@ -62,7 +67,7 @@ export default function HomeScreen() {
             style={{
               width: 200,
               height: 200,
-              backgroundColor: "#131344",
+              backgroundColor: "#1313440",
             }}
           ></View>
         )}
@@ -131,13 +136,12 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
-  screen: {
-    padding: 16,
-  },
+  screen: {},
   screenInner: {
     flexGrow: 1,
     alignItems: "center",
     justifyContent: "center",
+    padding: 16,
   },
   round: {
     borderRadius: RADIUS,

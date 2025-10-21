@@ -77,6 +77,7 @@ export function NavigationDrawer() {
         swipeMinDistance: width * 0.03,
         drawerStyle: {
           width: width * 0.85,
+          backgroundColor: isLight ? "#fff" : "#121212",
         },
         drawerLabelStyle: {
           fontFamily: "InterMedium",
@@ -102,10 +103,10 @@ export function NavigationDrawer() {
           swipeMinDistance: width * 0.025,
           drawerStyle: {
             width: width,
-            backgroundColor: Platform.select({
-              ios: "transparent",
-              android: isLight ? "#fff" : "#121212",
-            }),
+            // backgroundColor: Platform.select({
+            //   ios: "transparent",
+            //   android: isLight ? "#fff" : "#121212",
+            // }),
           },
           overlayColor: "transparent",
           drawerIcon: ({ color, size }) => <Home size={size} color={color} />,
@@ -118,10 +119,10 @@ export function NavigationDrawer() {
           swipeMinDistance: width * 0.025,
           drawerStyle: {
             width: width,
-            backgroundColor: Platform.select({
-              ios: "transparent",
-              android: isLight ? "#fff" : "#121212",
-            }),
+            // backgroundColor: Platform.select({
+            //   ios: "transparent",
+            //   android: isLight ? "#fff" : "#121212",
+            // }),
           },
           overlayColor: "transparent",
           drawerIcon: ({ color, size }) => (
@@ -137,10 +138,10 @@ export function NavigationDrawer() {
           swipeMinDistance: width * 0.025,
           drawerStyle: {
             width: width,
-            backgroundColor: Platform.select({
-              ios: "transparent",
-              android: isLight ? "#fff" : "#121212",
-            }),
+            // backgroundColor: Platform.select({
+            //   ios: "transparent",
+            //   android: isLight ? "#fff" : "#121212",
+            // }),
           },
           overlayColor: "transparent",
           drawerIcon: ({ color, size }) => (
@@ -156,7 +157,6 @@ export function NavigationDrawer() {
           swipeMinDistance: width * 0.025,
           drawerStyle: {
             width: width,
-            backgroundColor: "transparent",
           },
           overlayColor: "transparent",
           drawerIcon: ({ color, size }) => <Heart size={size} color={color} />,
@@ -170,7 +170,6 @@ export function NavigationDrawer() {
           swipeMinDistance: width * 0.025,
           drawerStyle: {
             width: width,
-            backgroundColor: "transparent",
           },
           overlayColor: "transparent",
           drawerIcon: ({ color, size }) => (
@@ -186,7 +185,6 @@ export function NavigationDrawer() {
           swipeMinDistance: width * 0.025,
           drawerStyle: {
             width: width,
-            backgroundColor: "transparent",
           },
           overlayColor: "transparent",
           drawerIcon: ({ color, size }) => (
@@ -202,7 +200,6 @@ export function NavigationDrawer() {
           swipeMinDistance: width * 0.025,
           drawerStyle: {
             width: width,
-            backgroundColor: "transparent",
           },
           overlayColor: "transparent",
           drawerIcon: ({ color, size }) => (
@@ -218,7 +215,6 @@ export function NavigationDrawer() {
           swipeMinDistance: width * 0.025,
           drawerStyle: {
             width: width,
-            backgroundColor: "transparent",
           },
           overlayColor: "transparent",
           drawerIcon: ({ color, size }) => (
@@ -234,7 +230,6 @@ export function NavigationDrawer() {
           swipeMinDistance: width * 0.025,
           drawerStyle: {
             width: width,
-            backgroundColor: "transparent",
           },
           overlayColor: "transparent",
           drawerIcon: ({ color, size }) => (
