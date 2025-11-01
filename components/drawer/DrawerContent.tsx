@@ -101,7 +101,7 @@ const Header = ({ routes }: { routes: number }) => {
         <View style={{}}>
           <Text style={styles.headerText}>Mandjou Dama</Text>
           <Text style={[styles.headerTextNumber, { color: tint }]}>
-            +223 78437323
+            +223 78 43 73 23
           </Text>
         </View>
       </View>

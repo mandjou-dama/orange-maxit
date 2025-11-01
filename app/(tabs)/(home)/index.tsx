@@ -1,3 +1,4 @@
+import HomeMainCard from "@/components/HomeMainCard";
 import { LargeTitle } from "@/components/LargeTitle";
 import { ThemedText as Text, ThemedTextWrapper } from "@/components/ThemedText";
 import { useHeaderBackground } from "@/hooks/useHeaderBackground";
@@ -93,6 +94,8 @@ export default function HomeScreen() {
         marginTop: 40,
       }}
     >
+      <HomeMainCard />
+
       {Array.from({ length: 10 }).map((_, index) => (
         <View
           key={index}
