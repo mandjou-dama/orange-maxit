@@ -91,7 +91,7 @@ export default function HomeScreen() {
   const renderFakeContent = () => (
     <View
       style={{
-        marginTop: 40,
+        marginTop: 20,
       }}
     >
       <HomeMainCard />
@@ -150,7 +150,7 @@ export default function HomeScreen() {
     >
       {renderHeaderTrigger()}
       <LargeTitle
-        title="Mandjou Dama"
+        title="Memphis Malik"
         offsetY={offsetY}
         // Pass collapse distance so LargeTitle cross-fades exactly when search fully clears the header
         searchBarAnimationDistance={0}
